@@ -18,10 +18,13 @@ class UserServices
         switch($status)
         {
             case 0:
-                $user->getAkses(1);
+                $user->setAkses('superadmin');
                 break;
             case 1:
-                $user->getAkses(0);
+                $user->setAkses('admin');
+                break;
+            case 2:
+                $user->setAkses('lapak');
                 break;
         }
     }

@@ -29,14 +29,6 @@ class AppController Implements ControllerProviderInterface
 {
 
     /**
-     * Returns routes to connect to the given application.
-     *
-     * @param Application $app An Application instance
-     *
-     * @return ControllerCollection A ControllerCollection instance
-     */
-
-    /**
      * @var Application
      */
 
@@ -50,6 +42,6 @@ class AppController Implements ControllerProviderInterface
     public function connect(Application $app)
     {
        $controllers = $app['controllers_factory'];
-        
+
     }
 }
