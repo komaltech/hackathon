@@ -80,7 +80,11 @@ $app->register(new \Silex\Provider\HttpFragmentServiceProvider());
 $app->register(new \Silex\Provider\ValidatorServiceProvider());
 
 /**
- *
+ * register User Entity repository
  */
+
+$app['user.repository'] = function() use ($app) {
+  return $app['orm.en']->getRepository(\Hackathon\pasar\Domain\Entity\User::class);
+};
 
 

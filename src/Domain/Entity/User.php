@@ -100,7 +100,10 @@ class User{
         $users = new User();
 
         $users->setEmail($email);
-        $users->pass($pass);
+        $users->setPass($pass);
+        $users->setAkses($akses);
+        $users->setCreatedAt(new \DateTime());
+        $users->setUpdatedAt(new \DateTime());
 
     }
 
@@ -272,6 +275,42 @@ class User{
     public function setDeskripsi($deskripsi)
     {
         $this->deskripsi = $deskripsi;
+    }
+
+    /**
+     * @return \DateTime
+     */
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param $createdAt
+     */
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+
+    public function getUpdatedAt()
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * @param $updatedAt
+     */
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updateAt = $updatedAt;
     }
 
     /**

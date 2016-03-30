@@ -231,6 +231,42 @@ class Produk {
     }
 
     /**
+     * @return \DateTime
+     */
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param $createdAt
+     */
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+
+    public function getUpdatedAt()
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * @param $updatedAt
+     */
+
+    public function setUpdateat($updatedAt)
+    {
+        $this->updateAt = $updatedAt;
+    }
+
+    /**
      * @PrePersist
      * @return Void
      */

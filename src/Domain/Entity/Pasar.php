@@ -184,9 +184,46 @@ class Pasar {
      * @param $longitudeB
      */
 
+
     public function setLongitudeB($longitudeB)
     {
         $this->longitudeB = $longitudeB;
+    }
+
+    /**
+     * @return \DateTime
+     */
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param $createdAt
+     */
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param $updatedAt
+     */
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     /**
