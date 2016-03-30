@@ -36,12 +36,29 @@ class AppController Implements ControllerProviderInterface
 
     /**
      * @param Application $app
+     */
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
+
+    /**
+     * @param Application $app
      * @return ControllerCollection
      */
-
     public function connect(Application $app)
     {
-       $controllers = $app['controllers_factory'];
+        $controllers = $app['controllers_factory'];
 
+        $controllers->get('/home', [$this, 'homeAction'])
+            ->bind('homeIndex');
+
+        return $controllers;
+
+    }
+
+    public function homeAction()
+    {
+        return $this->app['twig']->render('rumah.twig');
     }
 }
