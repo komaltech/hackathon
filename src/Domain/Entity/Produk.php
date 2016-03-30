@@ -85,6 +85,12 @@ class Produk {
 
     private $updateAt;
 
+    /**
+     * @Column(type="integer", name="kode_lapak", nullable=false)
+     * @var int
+     */
+    private $kodeLapak;
+
 
     /**
      * @return int
@@ -264,6 +270,22 @@ class Produk {
     public function setUpdateat($updatedAt)
     {
         $this->updateAt = $updatedAt;
+    }
+
+    /**
+     * @return int
+     */
+    public function getKodeLapak()
+    {
+        return $this->kodeLapak;
+    }
+
+    /**
+     * @param $kodeLapak
+     */
+    public function setKodeLapak($kodeLapak)
+    {
+        $this->kodeLapak = $kodeLapak;
     }
 
     /**

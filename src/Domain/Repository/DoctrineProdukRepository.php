@@ -16,18 +16,39 @@ class DoctrineProdukRepository extends EntityRepository implements ProdukReposit
 
 {
 
+    /**
+     * @param $id
+     * @return null|object
+     */
     public function findById($id)
     {
         return $this->find($id);
     }
 
+    /**
+     * @param $namaProduk
+     * @return null|object
+     */
     public function findByNamaProduk($namaProduk)
     {
         return $this->findOneBy(['nama_produk'=>$namaProduk]);
     }
 
+    /**
+     * @param $merkId
+     * @return null|object
+     */
     public function findByMerkId($merkId)
     {
         return $this->findOneBy(['merk_id'=>$merkId]);
+    }
+
+    /**
+     * @param $kodeLapak
+     * @return null|object
+     */
+    public function findByKodeLapak($kodeLapak)
+    {
+        return $this->find($kodeLapak);
     }
 }

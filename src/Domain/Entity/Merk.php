@@ -21,6 +21,7 @@ class Merk
      * @Column(type="integer")
      * @var int
      * @GeneratedValue
+     * @Id
      */
     private $id;
 
@@ -30,7 +31,11 @@ class Merk
      */
     private $namaMerk;
 
-
+    /**
+     * @Column(type="string", nullable=false)
+     * @var string
+     */
+    private $deskripsi;
 
     /**
      * @Column(type="datetime", name="created_at", nullable=false)
@@ -79,7 +84,18 @@ class Merk
     /**
      * @return string
      */
+    public function getDeskripsi()
+    {
+        return $this->deskripsi;
+    }
 
+    /**
+     * @param $deskripsi
+     */
+    public function setDeskripsi($deskripsi)
+    {
+        $this->deskripsi = $deskripsi;
+    }
 
     /**
      * @return \DateTime

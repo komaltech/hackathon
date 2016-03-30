@@ -33,4 +33,10 @@ interface ProdukRepositoryInterface
      */
 
     public function findByMerkId($merkId);
+
+    /**
+     * @param $kodeLapak
+     * @return Produk
+     */
+    public function findByKodeLapak($kodeLapak);
 }

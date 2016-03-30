@@ -34,12 +34,13 @@
                             </thead>
 
                             <tbody>
-                            {% for list in listMerk %}
                             {% set i = 1 %}
+                            {% for list in listMerk %}
+
                             <tr>
                                 <th>{{ i }}</th>
                                 <th>{{ list.namaMerk }}</th>
-
+                                <th>{{ list.deskripsi }}</th>
                                 <th>{{ list.updatedAt|date('d M Y')}}</th>
                             </tr>
                             </tbody>
