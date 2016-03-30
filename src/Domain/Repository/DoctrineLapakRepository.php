@@ -30,4 +30,9 @@ class DoctrineLapakRepository extends EntityRepository implements LapakRepositor
     {
         return $this->findOneBy(['pasar_id' => $pasarId]);
     }
+
+    public function findByKodeLapak($kodeLapak)
+    {
+        return $this->findBy(['kodeLapak' => $kodeLapak]);
+    }
 }

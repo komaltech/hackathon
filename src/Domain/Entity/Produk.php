@@ -12,6 +12,7 @@ namespace Hackathon\pasar\Domain\Entity;
  * Class Produk
  * @package Hackathon\pasar\Domain\Entity
  * @Entity(repositoryClass="Hackathon\pasar\Domain\Repository\DoctrineProdukRepository")
+ * @Table(name="produk")
  * @HasLifecycleCallbacks
  */
 class Produk {
@@ -31,7 +32,7 @@ class Produk {
     private $kode;
 
     /**
-     * @Column(type="string",length="255", name="nama_produk",nullable=false)
+     * @Column(type="string",length=255, name="nama_produk",nullable=false)
      * @var string
      */
 
@@ -45,8 +46,8 @@ class Produk {
     private $merkId;
 
     /**
-     * @Column(type="integer")
-     * @var int
+     * @Column(type="string", length=255, nullable=false)
+     * @var string
      */
 
     private $satuan;
@@ -66,8 +67,8 @@ class Produk {
     private $qty;
 
     /**
-     * @Column(type="text")
-     * @var text
+     * @Column(type="string")
+     * @var string
      */
 
     private $deskripsi;
@@ -219,7 +220,7 @@ class Produk {
     }
 
     /**
-     * @return text
+     * @return string
      */
 
     public function getDeskripsi()

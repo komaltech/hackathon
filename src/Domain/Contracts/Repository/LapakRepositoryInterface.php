@@ -30,4 +30,6 @@ interface LapakRepositoryInterface
      * @return Lapak
      */
     public function findByPasarId($pasarId);
+
+    public function findByKodeLapak($kodeLapak);
 }

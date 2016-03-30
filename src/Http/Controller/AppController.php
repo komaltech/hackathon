@@ -70,8 +70,21 @@ class AppController Implements ControllerProviderInterface
         $controllers->get('/listMerk', [$this, 'showMerkAction'])
             ->bind('listMerk');
 
+        $controllers->get('/detailProduk', [$this, 'detailProdukAction'])
+            ->bind('detailProduk');
+
         return $controllers;
 
+    }
+
+    public function detailProdukAction()
+    {
+        $lapakName = $this->app['lapak.repository']->findByKodeLapak($this->app['request']->get('id'));
+        $lapakId = $this->app['produk.repository']->findByKodeLapak($this->app['request']->get('id'));
+
+//        $detailProduk = $lapakId->get
+
+        return $this->app['twig']->render('detailProduk.twig', ['listProduk' => $lapakId, 'lapakName' => $lapakName]);
     }
 
     public function showMerkAction()

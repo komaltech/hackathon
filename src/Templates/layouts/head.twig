@@ -9,7 +9,9 @@
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="{{ app.request.basepath }}assets/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ app.request.basepath }}assets/dist/fonts/font-awesome/font-awesome.css">
+    {#<link rel="stylesheet" href="{{ app.request.basepath }}assets/dist/fonts/font-awesome/font-awesome.css">#}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ app.request.basepath }}assets/dist/fonts/icomoon/icomoon.css">
     <!-- DataTables -->
@@ -136,6 +138,13 @@
                         <li><a href=""><i class="fa fa-circle-o"></i> List Merk</a></li>
                         <li><a href=""><i class="fa fa-circle-o"></i> Merk Baru</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="{{ ('/home') }}">
+                        <i class="fa fa-balance-scale"></i>
+                        <span>Pasar</span>
+                        {#<span class="label label-primary pull-right">4</span>#}
+                    </a>
                 </li>
             </ul>
         </section>

@@ -10,15 +10,19 @@ namespace Hackathon\pasar\Domain\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Hackathon\pasar\Domain\Contracts\Repository\ProdukRepositoryInterface;
+use Hackathon\pasar\Domain\Entity\Produk;
 
-
+/**
+ * Class DoctrineProdukRepository
+ * @package Hackathon\pasar\Domain\Repository
+ */
 class DoctrineProdukRepository extends EntityRepository implements ProdukRepositoryInterface
 
 {
 
     /**
      * @param $id
-     * @return null|object
+     * @return Produk
      */
     public function findById($id)
     {
@@ -27,7 +31,7 @@ class DoctrineProdukRepository extends EntityRepository implements ProdukReposit
 
     /**
      * @param $namaProduk
-     * @return null|object
+     * @return Produk[]
      */
     public function findByNamaProduk($namaProduk)
     {
@@ -36,7 +40,7 @@ class DoctrineProdukRepository extends EntityRepository implements ProdukReposit
 
     /**
      * @param $merkId
-     * @return null|object
+     * @return Produk[]
      */
     public function findByMerkId($merkId)
     {
@@ -45,10 +49,10 @@ class DoctrineProdukRepository extends EntityRepository implements ProdukReposit
 
     /**
      * @param $kodeLapak
-     * @return null|object
+     * @return Produk
      */
     public function findByKodeLapak($kodeLapak)
     {
-        return $this->find($kodeLapak);
+        return $this->findBy(["kodeLapak" => $kodeLapak]);
     }
 }

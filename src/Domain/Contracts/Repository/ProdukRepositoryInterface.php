@@ -9,8 +9,12 @@
 namespace Hackathon\pasar\Domain\Contracts\Repository;
 
 use Hackathon\pasar\Domain\Entity\Produk;
+use Doctrine\Common\Collections\ArrayCollection;
 
-
+/**
+ * Interface ProdukRepositoryInterface
+ * @package Hackathon\pasar\Domain\Contracts\Repository
+ */
 interface ProdukRepositoryInterface
 {
     /**
@@ -22,14 +26,14 @@ interface ProdukRepositoryInterface
 
     /**
      * @param $namaProduk
-     * @return Produk
+     * @return ArrayCollection
      */
 
     public function findByNamaProduk($namaProduk);
 
     /**
      * @param $merkId
-     * @return Produk
+     * @return ArrayCollection
      */
 
     public function findByMerkId($merkId);
