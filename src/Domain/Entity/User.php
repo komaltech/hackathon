@@ -84,6 +84,26 @@ class User{
      */
     private $updateAt;
 
+    public function __Construct()
+    {
+
+    }
+
+    /**
+     * @param $email
+     * @param $pass
+     * @param $akses
+     */
+
+    public function create($email,$pass,$akses)
+    {
+        $users = new User();
+
+        $users->setEmail($email);
+        $users->pass($pass);
+
+    }
+
 
     /**
      * @return int
