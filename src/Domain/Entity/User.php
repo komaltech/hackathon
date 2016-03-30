@@ -1,125 +1,131 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: root
+ * User: jimmy
  * Date: 30/03/16
- * Time: 13:01
+ * Time: 21:43
  */
 
 namespace Hackathon\pasar\Domain\Entity;
 
 /**
  * Class User
- * @package Hackathon\pasar\Domain\Entity
  * @Entity(repositoryClass="Hackathon\pasar\Domain\Repository\DoctrineUserRepository")
- * @HasLifecycleCallbacks
+ * @package Hackathon\pasar\Domain\Entity
+ * @Table(name="user")
  */
-class User{
-
+class User
+{
     /**
-     * @id
+     * @Id
      * @Column(type="integer")
-     * @GenerateValue
+     * @GeneratedValue
      * @var int
      */
     private $id;
 
     /**
-     * @Column(type="string",length="255",nullable=false)
+     * @Column(type="string", length=255, nullable=false)
      * @var string
      */
     private $email;
 
     /**
-     * @Column(type="string",length="255",nullable=false)
+     * @Column(type="string", name="username", nullable=false)
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @Column(type="string", length=255, nullable=false)
      * @var string
      */
     private $telp;
 
     /**
-     * @Column(type="string",length="255",nullable=false)
+     * @Column(type="string", length=255, nullable=false)
      * @var string
      */
-    private $pass;
+    private $password;
 
     /**
-     * @Column(type="string",length="255",name="nama_lengkap",nullable=false)
+     * @Column(type="string",name="nama_lengkap", length=255, nullable=false)
      * @var string
      */
     private $namaLengkap;
 
     /**
-     * @Column(type="string",length="255",nullable=false)
+     * @Column(type="string", length=255, nullable=false)
      * @var string
      */
     private $alamat;
 
     /**
-     * @Column(type="integer")
+     * @Column(type="integer", nullable=false)
      * @var int
      */
     private $akses;
 
     /**
-     * @Column(type="integer",name="lapak_id")
+     * @Column(type="integer",name="lapak_id", nullable=true)
      * @var int
      */
     private $lapakId;
 
     /**
-     * @Column(type="text")
-     * @var text
+     * @Column(type="string", nullable=true)
+     * @var string
      */
     private $deskripsi;
 
     /**
-     * @Column(type="datetime" , name="create_at" , nullable=false)
+     * @Column(type="datetime",name="created_at", nullable=false)
      * @var \DateTime
      */
     private $createdAt;
 
     /**
-     * @Column(type="datetime",name="updated_at",nullable=false)
+     * @Column(type="datetime",name="updated_at", nullable=false)
      * @var \DateTime
      */
-    private $updateAt;
-
-    public function __Construct()
-    {
-
-    }
+    private $updatedAt;
 
     /**
      * @param $email
-     * @param $pass
+     * @param $password
+     * @param $namaLengkap
+     * @param $alamat
      * @param $akses
+     * @return User
      */
-
-    public function create($email,$pass,$akses)
+    public static function create($email, $username, $password, $namaLengkap, $alamat, $akses)
     {
-        $users = new User();
+        $userInfo = new User();
 
-        $users->setEmail($email);
-        $users->setPass($pass);
-        $users->setAkses($akses);
-        $users->setCreatedAt(new \DateTime());
-        $users->setUpdatedAt(new \DateTime());
+        $userInfo->setEmail($email);
+        $userInfo->setPassword($password);
+        $userInfo->setNamaLengkap($namaLengkap);
+        $userInfo->createdAt = new \DateTime();
+        $userInfo->updatedAt = new \DateTime();
+        $userInfo->setTelp('000000000');
+        $userInfo->setAlamat($alamat);
+        $userInfo->setAkses($akses);
+        $userInfo->setUsername($username);
 
+        return $userInfo;
     }
-
 
     /**
      * @return int
      */
     public function getId()
     {
-       return $this->id;
+        return $this->id;
     }
 
-    /**'
+    /**
      * @param $id
      */
-
     public function setId($id)
     {
         $this->id = $id;
@@ -128,7 +134,22 @@ class User{
     /**
      * @return string
      */
+    public function getUsername()
+    {
+        return $this->username;
+    }
 
+    /**
+     * @param $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
@@ -139,13 +160,12 @@ class User{
      */
     public function setEmail($email)
     {
-        return $this->email = $email;
+        $this->email = $email;
     }
 
     /**
      * @return string
      */
-
     public function getTelp()
     {
         return $this->telp;
@@ -154,43 +174,30 @@ class User{
     /**
      * @param $telp
      */
-
     public function setTelp($telp)
     {
         $this->telp = $telp;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-
-    public function getPas()
+    public function getPassword()
     {
-        return $this->pass;
+        return $this->password;
     }
 
     /**
-     * @param $pass
+     * @param $password
      */
-
-    public function setPass($pass)
+    public function setPassword($password)
     {
-        $this->pass = password_hash($pass,PASSWORD_DEFAULT);
-    }
-
-    /**
-     * @param $pass
-     */
-
-    public function setPassNonHash($pass)
-    {
-        $this->pass = $pass;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
      * @return string
      */
-
     public function getNamaLengkap()
     {
         return $this->namaLengkap;
@@ -199,7 +206,6 @@ class User{
     /**
      * @param $namaLengkap
      */
-
     public function setNamaLengkap($namaLengkap)
     {
         $this->namaLengkap = $namaLengkap;
@@ -208,7 +214,6 @@ class User{
     /**
      * @return string
      */
-
     public function getAlamat()
     {
         return $this->alamat;
@@ -217,7 +222,6 @@ class User{
     /**
      * @param $alamat
      */
-
     public function setAlamat($alamat)
     {
         $this->alamat = $alamat;
@@ -226,7 +230,6 @@ class User{
     /**
      * @return int
      */
-
     public function getAkses()
     {
         return $this->akses;
@@ -235,7 +238,6 @@ class User{
     /**
      * @param $akses
      */
-
     public function setAkses($akses)
     {
         $this->akses = $akses;
@@ -244,7 +246,6 @@ class User{
     /**
      * @return int
      */
-
     public function getLapakId()
     {
         return $this->lapakId;
@@ -253,16 +254,14 @@ class User{
     /**
      * @param $lapakId
      */
-
     public function setLapakId($lapakId)
     {
         $this->lapakId = $lapakId;
     }
 
     /**
-     * @return text
+     * @return string
      */
-
     public function getDeskripsi()
     {
         return $this->deskripsi;
@@ -271,7 +270,6 @@ class User{
     /**
      * @param $deskripsi
      */
-
     public function setDeskripsi($deskripsi)
     {
         $this->deskripsi = $deskripsi;
@@ -280,7 +278,6 @@ class User{
     /**
      * @return \DateTime
      */
-
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -289,7 +286,6 @@ class User{
     /**
      * @param $createdAt
      */
-
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
@@ -298,26 +294,23 @@ class User{
     /**
      * @return \DateTime
      */
-
     public function getUpdatedAt()
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     /**
      * @param $updatedAt
      */
-
     public function setUpdatedAt($updatedAt)
     {
-        $this->updateAt = $updatedAt;
+        $this->updatedAt = $updatedAt;
     }
 
     /**
      * @PrePersist
-     * @return Void
+     * @return void
      */
-
     public function timestampableCreateEvent()
     {
         $this->createdAt = new \DateTime();
@@ -325,14 +318,10 @@ class User{
 
     /**
      * @PrePersist
-     * @return Void
+     * @return void
      */
-
     public function timestampableUpdateEvent()
     {
-        $this->updateAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
-
-
-
 }

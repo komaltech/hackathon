@@ -27,6 +27,12 @@ interface UserRepositoryInterface
     public function findByEmail($email);
 
     /**
+     * @param $username
+     * @return User
+     */
+    public function findByUsername($username);
+
+    /**
      * @param $lapakId
      * @return User
      */

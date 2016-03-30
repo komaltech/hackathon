@@ -84,7 +84,15 @@ $app->register(new \Silex\Provider\ValidatorServiceProvider());
  */
 
 $app['user.repository'] = function() use ($app) {
-  return $app['orm.en']->getRepository(\Hackathon\pasar\Domain\Entity\User::class);
+  return $app['orm.em']->getRepository(\Hackathon\pasar\Domain\Entity\User::class);
+};
+
+$app['lapak.repository'] = function() use ($app) {
+    return $app['orm.em']->getRepository(\Hackathon\pasar\Domain\Entity\Lapak::class);
+};
+
+$app['merk.repository'] = function() use ($app) {
+    return $app['orm.em']->getRepository(\Hackathon\pasar\Domain\Entity\Merk::class);
 };
 
 

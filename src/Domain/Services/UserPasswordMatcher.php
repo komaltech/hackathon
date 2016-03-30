@@ -9,6 +9,11 @@
 namespace Hackathon\pasar\Domain\Services;
 
 use Hackathon\pasar\Domain\Entity\User;
+
+/**
+ * Class UserPasswordMatcher
+ * @package Hackathon\pasar\Domain\Services
+ */
 class UserPasswordMatcher
 {
     private $rawPassword;
@@ -23,7 +28,7 @@ class UserPasswordMatcher
 
     public function match()
     {
-        return password_verify($this->rawPassword,$this->user->getPas());
+        return password_verify($this->rawPassword,$this->user->getPassword());
     }
 
 

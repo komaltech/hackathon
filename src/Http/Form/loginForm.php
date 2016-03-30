@@ -30,25 +30,25 @@ class loginForm extends AbstractType
      * @var string
      */
 
-    private $pass;
+    private $password;
 
     public function buildForm(FormBuilderInterface $builder,array $options)
     {
         $builder->add(
-            'email',
+            'username',
             'text',
             [
                 'constraints' => new Assert\NotBlank(),
-                'attr' => ['class'=>'gui-input','placeholder'=>'Input email'],
+                'attr' => ['class'=>'form-control','placeholder'=>'Input Email or Username', 'required' => 'required'],
                 'label' => false,
                 'label_attr'=> ['class'=>'field-label']
             ]
         )->add(
             'password',
-            'text',
+            'password',
             [
                 'constraints' => new Assert\NotBlank(),
-                'attr' => ['class'=>'gui-input','placeholder'=>'Input Password'],
+                'attr' => ['class'=>'form-control','placeholder'=>'Input Password', 'required' => 'required'],
                 'label' => false,
                 'label_attr' => ['class'=>'field-label']
             ]
@@ -56,7 +56,8 @@ class loginForm extends AbstractType
             'login',
             'submit',
             [
-
+                'attr' => ['class' => 'btn btn-primary btn-block btn-flat'],
+                'label' => 'Sign In'
             ]
         );
     }
@@ -66,23 +67,23 @@ class loginForm extends AbstractType
         return 'login';
     }
 
-    public function getEmail()
+    public function getUsername()
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setUsername($username)
     {
-        $this->email = $email;
+        $this->email = $username;
     }
 
-    public function getPass()
+    public function getPassword()
     {
-        return $this->pass;
+        return $this->password;
     }
 
-    public function setPass($pass)
+    public function setPassword($password)
     {
-        $this->pass = $pass;
+        $this->password = $password;
     }
 }

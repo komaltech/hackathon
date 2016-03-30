@@ -12,6 +12,7 @@ namespace Hackathon\pasar\Domain\Entity;
  * Class Lapak
  * @package Hackathon\pasar\Domain\Entity
  * @Entity(repositoryClass="Hackathon\pasar\Domain\Repository\DoctrineLapakRepository")
+ * @Table(name="lapak")
  * @HasLifecycleCallbacks
  */
 class Lapak

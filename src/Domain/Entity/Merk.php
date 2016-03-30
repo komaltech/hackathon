@@ -10,7 +10,9 @@ namespace Hackathon\pasar\Domain\Entity;
 
 /**
  * Class Merk
- * @package Hackathon\pasar\Domain\Entity
+ * @Entity(repositoryClass="Hackathon\pasar\Domain\Repository\DoctrineMerkRepository")
+ * @Table(name="merk")
+ * @HasLifecycleCallbacks
  */
 class Merk
 {
@@ -28,11 +30,7 @@ class Merk
      */
     private $namaMerk;
 
-    /**
-     * @Column(type="string", nullable=false)
-     * @var string
-     */
-    private $deskripsi;
+
 
     /**
      * @Column(type="datetime", name="created_at", nullable=false)
@@ -81,18 +79,7 @@ class Merk
     /**
      * @return string
      */
-    public function getDeskripsi()
-    {
-        return $this->deskripsi;
-    }
 
-    /**
-     * @param $deskripsi
-     */
-    public function setDeskripsi($deskripsi)
-    {
-        $this->deskripsi = $deskripsi;
-    }
 
     /**
      * @return \DateTime
