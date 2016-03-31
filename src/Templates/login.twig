@@ -29,10 +29,10 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ ('/home') }}"><b>Admin</b>LTE</a>
+        <a href="{{ ('/home') }}"><b>Ke</b>Pasar</a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Silahkan login terlebih dahulu</p>
 
         {{ form_start(form, {'method': 'POST', 'action': 'loginAdmin'}) }}
         {% for message in app.session.getFlashBag.get('message_success') %}
