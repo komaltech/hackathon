@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -8,8 +9,8 @@
 
 namespace Hackathon\pasar\Http\Form;
 
+use Hackathon\pasar\Domain\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,62 +18,46 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class UserForm
  * @package Hackathon\pasar\Http\Form
  */
-
 class UserForm extends AbstractType
 {
 
     private $email;
-
     private $pass;
-
     private $akses;
-
     private $createdAt;
-
     private $updatedAt;
 
-    public function buildForm(FormBuilderInterface $builder,array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            'email',
-            'text',
-            [
-                'constraints' => new Assert\NotBlank(),
-                'attr' => ['class'=>'form-control','placeholder'=>'Username'],
-                'label' => false
-            ]
-        )->add(
-            'password',
-            'text',
-            [
-                'constraints' => new Assert\NotBlank(),
-                'attr' => ['class'=>'form-control','placeholder'=>'Password'],
-                'label' => false
-            ]
-
-        )->add(
-            'akses',
-            'choice',
-            [
-                'constraints' => new Assert\Choice(array(0,1,2)),
-                'choice_list' => array(0 =>'superadmin',1=>'admin',2=>'lapak'),
-                'placeholder' => '-- Pilih Status --',
-                'label' => false,
-                'empty_data'=>null,
-                'attr' => [
-                    'class' => 'select'
+                'email', 'text', [
+            'constraints' => new Assert\NotBlank(),
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Username'],
+            'label' => false
                 ]
-            ]
         )->add(
-            'kirim',
-            'submit',
-            [
-                'label' => 'eksekusi',
-                'attr' => [
-
+                'password', 'text', [
+            'constraints' => new Assert\NotBlank(),
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Password'],
+            'label' => false
                 ]
+        )->add(
+                'akses', 'choice', [
+            'constraints' => new Assert\Choice(array(0, 1, 2)),
+            'choice_list' => array(0 => 'superadmin', 1 => 'admin', 2 => 'lapak'),
+            'placeholder' => '-- Pilih Status --',
+            'label' => false,
+            'empty_data' => null,
+            'attr' => [
+                'class' => 'select'
             ]
-
+                ]
+        )->add(
+                'kirim', 'submit', [
+            'label' => 'eksekusi',
+            'attr' => [
+            ]
+                ]
         );
     }
 
@@ -125,4 +110,5 @@ class UserForm extends AbstractType
     {
         $this->updatedAt = $updatedAt;
     }
+
 }
