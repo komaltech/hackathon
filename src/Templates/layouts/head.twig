@@ -59,13 +59,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ app.request.basepath }}assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="{{ app.request.basepath }}assets/dist/img/avatar5.png" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{ app.session.get('nama')['value'] }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="{{ app.request.basepath }}assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="{{ app.request.basepath }}assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
                                 <p>
                                     {{ app.session.get('nama')['value'] }}
                                     <small>Member since Nov. 2012</small>
@@ -94,60 +94,65 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{ app.request.basepath }}assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="{{ app.request.basepath }}assets/dist/img/avatar5.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{ app.session.get('nama')['value'] }}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i>
+                        {% if ((app.session.get('akses')['value']) == 0) %}
+                            SuperAdmin
+                        {% elseif ((app.session.get('akses')['value']) == 1) %}
+                            Admin
+                        {% else %}
+                            Pelapak
+                        {% endif %}
+                    </a>
                 </div>
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
-                {#<li class="treeview">#}
-                    {#<a href="#">#}
-                        {#<i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>#}
-                    {#</a>#}
-
-                    {#<ul class="treeview-menu">#}
-                        {#<li><a href="{{ app.request.basepath }}assets/index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>#}
-                        {#<li><a href="{{ app.request.basepath }}assets/index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>#}
-                    {#</ul>#}
-                {#</li>#}
                 <li>
                     <a href="{{ ('/home') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
-                        {#<span class="label label-primary pull-right">4</span>#}
                     </a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-shopping-cart"></i> <span>Lapak</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
+                {% if ((app.session.get('akses')['value']) < 2) %}
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i> <span>Lapak</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
 
-                    <ul class="treeview-menu">
-                        <li><a href="{{ ('/listLapak') }}"><i class="fa fa-circle-o"></i> List Lapak</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Lapak Baru</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-tags"></i> <span>Merk (Branding)</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ ('/listLapak') }}"><i class="fa fa-circle-o"></i> List Lapak</a></li>
+                            <li><a href=""><i class="fa fa-circle-o"></i> Lapak Baru</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-tags"></i> <span>Merk (Branding)</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
 
-                    <ul class="treeview-menu">
-                        <li><a href="{{ ('/listMerk') }}"><i class="fa fa-circle-o"></i> List Merk</a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Merk Baru</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ ('/home') }}">
-                        <i class="fa fa-balance-scale"></i>
-                        <span>Pasar</span>
-                        {#<span class="label label-primary pull-right">4</span>#}
-                    </a>
-                </li>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ ('/listMerk') }}"><i class="fa fa-circle-o"></i> List Merk</a></li>
+                            <li><a href=""><i class="fa fa-circle-o"></i> Merk Baru</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ ('/listPasar') }}">
+                            <i class="fa fa-balance-scale"></i>
+                            <span>Pasar</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ ('/listProdukPelapak') }}">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>List Produk</span>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </section>
         <!-- /.sidebar -->
