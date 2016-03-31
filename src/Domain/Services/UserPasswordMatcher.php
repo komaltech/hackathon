@@ -22,13 +22,13 @@ class UserPasswordMatcher
 
     public function __Construct($rawPassword,User $user)
     {
-        $this->rawPassword = $rawPassword;
+        $this->rawPassword = md5($rawPassword);
         $this->user = $user;
     }
 
     public function match()
     {
-        return password_verify($this->rawPassword,$this->user->getPassword());
+        return $this->rawPassword == $this->user->getPassword();
     }
 
 

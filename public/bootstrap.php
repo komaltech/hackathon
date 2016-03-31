@@ -99,4 +99,9 @@ $app['produk.repository'] = function() use ($app) {
     return $app['orm.em']->getRepository(\Hackathon\pasar\Domain\Entity\Produk::class);
 };
 
+$app['pasar.repository'] = function() use ($app) {
+    return $app['orm.em']->getRepository(\Hackathon\pasar\Domain\Entity\Pasar::class);
+};
+
+
 

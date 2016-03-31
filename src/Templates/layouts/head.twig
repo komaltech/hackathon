@@ -22,6 +22,8 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ app.request.basepath }}assets/dist/css/skins/_all-skins.min.css">
 
+    <link href="{{ app.request.basepath }}assets/dist/img/cart-icon.png" rel="icon">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,14 +60,14 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ app.request.basepath }}assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">{{ app.session.get('nama')['value'] }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="{{ app.request.basepath }}assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    {{ app.session.get('nama')['value'] }}
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -95,7 +97,7 @@
                     <img src="{{ app.request.basepath }}assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>{{ app.session.get('nama')['value'] }}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -135,7 +137,7 @@
                     </a>
 
                     <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> List Merk</a></li>
+                        <li><a href="{{ ('/listMerk') }}"><i class="fa fa-circle-o"></i> List Merk</a></li>
                         <li><a href=""><i class="fa fa-circle-o"></i> Merk Baru</a></li>
                     </ul>
                 </li>

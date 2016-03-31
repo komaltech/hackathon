@@ -73,16 +73,24 @@ class AppController Implements ControllerProviderInterface
         $controllers->get('/detailProduk', [$this, 'detailProdukAction'])
             ->bind('detailProduk');
 
+        $controllers->get('/listPasar', [$this, 'listPasarAction'])
+            ->bind('listPasar');
+
         return $controllers;
 
+    }
+
+    public function listPasarAction()
+    {
+        $infoPasar = $this->app['pasar.repository']->findAll();
+
+        return $this->app['twig']->render('listPasar.twig', ['infoPasar' => $infoPasar]);
     }
 
     public function detailProdukAction()
     {
         $lapakName = $this->app['lapak.repository']->findByKodeLapak($this->app['request']->get('id'));
         $lapakId = $this->app['produk.repository']->findByKodeLapak($this->app['request']->get('id'));
-
-//        $detailProduk = $lapakId->get
 
         return $this->app['twig']->render('detailProduk.twig', ['listProduk' => $lapakId, 'lapakName' => $lapakName]);
     }
