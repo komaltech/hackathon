@@ -1,0 +1,61 @@
+{% extends 'layouts/head.twig' %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-tags"></i> Data Merk (Branding)
+            <small>Data-data brand terdaftar</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Merk (Branding)</a></li>
+            <li class="active">List Merk</li>
+        </ol>
+    </section>
+    {#{{ dump(listLapak) }}#}
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <a href="#" class="btn btn-primary">Tambah Produk&nbsp; <i class="fa fa-plus"></i></a>
+                        <div class="box-tools">
+
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>No.</th>
+                                <th>Kode</th>
+                                <th>Nama Produk</th>
+                                <th>Merk ID</th>
+                                <th>Harga (Rp.)</th>
+                                <th>Quantity</th>
+                                <th>Satuan</th>
+                                <th>Deskripsi</th>
+                                <th>Updated At</th>
+                            </tr>
+                            {% set i = 1 %}
+                            {% for list in infoPelapak %}
+                                <tr>
+                                    <th>{{ i }}</th>
+                                    <th>{{ list.kode }}</th>
+                                    <th style="text-transform: uppercase">{{ list.namaProduk }}</th>
+                                    <th>{{ list.merkId }}</th>
+                                    <th>{{ list.harga }}</th>
+                                    <th>{{ list.qty }}</th>
+                                    <th>{{ list.satuan }}</th>
+                                    <th>{{ list.deskripsi }}</th>
+                                    <th>{{ list.updatedAt|date('d M Y')}}</th>
+                                </tr>
+                                {% set i = i + 1 %}
+                            {% endfor %}
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -76,8 +76,38 @@ class AppController Implements ControllerProviderInterface
         $controllers->get('/listPasar', [$this, 'listPasarAction'])
             ->bind('listPasar');
 
+        $controllers->get('/listUser', [$this, 'listUserAction'])
+            ->bind('listUser');
+
+        $controllers->get('/listProdukPelapak', [$this, 'listProdukPelapakAction'])
+            ->before([$this,'checkStatusPelapak'])
+            ->bind('listProdukPelapak');
+
         return $controllers;
 
+    }
+
+    public function listProdukPelapakAction()
+    {
+        $infoPelapak = $this->app['produk.repository']->findByKodeLapak($this->app['session']->get('lapakId'));
+
+        return $this->app['twig']->render('pelapak\listProdukPelapak.twig', ['infoPelapak' => $infoPelapak]);
+    }
+
+    public function checkStatusPelapak()
+    {
+        $role = $this->app['session']->get('akses');
+
+        if ($role['value'] !== 2) {
+            return $this->app->redirect($this->app['url_generator']->generate('showLapak'));
+        }
+    }
+
+    public function listUserAction()
+    {
+        $infoUser = $this->app['user.repository']->findAll();
+
+        return $this->app['twig']->render('listUser.twig', ['infoUser' => $infoUser]);
     }
 
     public function listPasarAction()
@@ -133,7 +163,7 @@ class AppController Implements ControllerProviderInterface
 
     public  function rawUserAction()
     {
-        $userInfo = User::create('killcoder212@gmail.com','ditolaksono','hujanturun', 'Dito Laksono','jl. bunga desember',2);
+        $userInfo = User::create('ditolaksono@gmail.com','ditoyp','faster', 'Dito YP','jl. bunga desember',2);
 
         $this->app['orm.em']->persist($userInfo);
         $this->app['orm.em']->flush();
@@ -182,6 +212,7 @@ class AppController Implements ControllerProviderInterface
 
         $this->app['session']->set('akses', ['value' => $user->getAkses()]);
         $this->app['session']->set('nama', ['value' => $user->getNamalengkap()]);
+        $this->app['session']->set('lapakId', ['value' => $user->getLapakId()]);
 
         return $this->app->redirect($this->app['url_generator']->generate('homeIndex'));
     }
