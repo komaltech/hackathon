@@ -18,9 +18,9 @@ namespace Hackathon\pasar\Domain\Entity;
 class Produk {
 
     /**
-     * @id
-     * @Column(type="integer")
-     * @GenerateValue
+     * @Id
+     * @Column(name="id", type="integer", nullable=false)
+     * @GeneratedValue(strategy="IDENTITY")
      * @var int
      */
     private $id;
@@ -92,6 +92,24 @@ class Produk {
      */
     private $kodeLapak;
 
+
+    public static function create($kode, $kodeLapak, $namaProduk, $merkId, $satuan, $harga, $qty, $deskripsi)
+    {
+        $informasi = new Produk();
+
+        $informasi->setKode($kode);
+        $informasi->setKodeLapak($kodeLapak);
+        $informasi->setNamaProduk($namaProduk);
+        $informasi->setMerkId($merkId);
+        $informasi->setSatuan($satuan);
+        $informasi->setHarga($harga);
+        $informasi->setQty($qty);
+        $informasi->setDeskripsi($deskripsi);
+        $informasi->setCreatedAt(new \DateTime());
+        $informasi->setUpdateat(new \DateTime());
+
+        return $informasi;
+    }
 
     /**
      * @return int
@@ -178,7 +196,7 @@ class Produk {
      * @param $satuan
      */
 
-    public function SetSatuan($satuan)
+    public function setSatuan($satuan)
     {
         $this->satuan = $satuan;
     }

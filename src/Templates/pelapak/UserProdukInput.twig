@@ -1,0 +1,72 @@
+{% extends 'layouts/head.twig' %}
+
+{% block content %}
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Input Produk Baru</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    {{ form_start(form, {'method': 'post', 'action': 'UserProdukInput'}) }}
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.kode) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.kodeLapak) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.merkId) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.namaProduk) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.satuan) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.harga) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.qty) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            {{ form_row(form.deskripsi) }}
+                        </div>
+
+                    </div><!-- /.box-body -->
+
+                    <div class="box-footer">
+                        {{ form_row(form.kirim) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

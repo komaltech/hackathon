@@ -17,6 +17,7 @@ use Hackathon\pasar\Domain\Entity\Produk;
 use Hackathon\pasar\Domain\Entity\User;
 use Hackathon\pasar\Domain\Services\UserPasswordMatcher;
 use Hackathon\pasar\Http\Form\loginForm;
+use Hackathon\pasar\Http\Form\tambahProdukForm;
 use Hackathon\pasar\Http\Form\produkForm;
 use Hackathon\pasar\Http\Form\UserForm;
 use Silex\Application;
@@ -83,7 +84,37 @@ class AppController Implements ControllerProviderInterface
             ->before([$this,'checkStatusPelapak'])
             ->bind('listProdukPelapak');
 
+        $controllers->match('/UserProdukInput', [$this, 'UserProdukInputAction'])
+            ->before([$this, 'checkStatusPelapak'])
+            ->bind('UserProdukInput');
+
         return $controllers;
+
+    }
+
+    public function UserProdukInputAction(Request $request)
+    {
+        $produkForm = new tambahProdukForm();
+
+        $formBuilder = $this->app['form.factory']->create($produkForm, $produkForm);
+
+        if ($request->getMethod() === 'GET') {
+            return $this->app['twig']->render('pelapak\UserProdukInput.twig', ['form' => $formBuilder->createView()]);
+        }
+
+        $formBuilder->handleRequest($request);
+
+        if (! $formBuilder->isValid()) {
+            return $this->app['twig']->render('pelapak\UserProdukInput.twig', ['form' => $formBuilder->createView()]);
+        }
+
+        $infoData = Produk::create($produkForm->getKode(), $produkForm->getkodeLapak(), $produkForm->getnamaProduk(), $produkForm->getmerkId(), $produkForm->getsatuan(), $produkForm->getHarga(), $produkForm->getQty(), $produkForm->getDeskripsi());
+
+        $this->app['orm.em']->persist($infoData);
+        $this->app['orm.em']->flush();
+
+        return $this->app->redirect($this->app['url_generator']->generate('listProdukPelapak'));
+
 
     }
 

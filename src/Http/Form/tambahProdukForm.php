@@ -42,49 +42,71 @@ class tambahProdukForm extends AbstractType
             'kode',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Kode'],
+                'label' => 'Kode'
             ]
         )->add(
             'kodeLapak',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Kode Lapak'],
+                'label' => 'Kode Lapak'
             ]
         )->add(
             'namaProduk',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Nama Produk'],
+                'label' => 'Nama Produk'
+            ]
+        )->add(
+            'merkId',
+            'text',
+            [
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Merk ID'],
+                'label' => 'Merk ID'
             ]
         )->add(
             'satuan',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Satuan'],
+                'label' => 'Satuan'
             ]
         )->add(
             'harga',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Harga'],
+                'label' => 'Harga Satuan'
             ]
         )->add(
             'qty',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Quantity'],
+                'label' => 'Quantity'
             ]
         )->add(
             'deskripsi',
             'text',
             [
-                'constraints' => new Assert\NotBlank()
+                'constraints' => new Assert\NotBlank(),
+                'attr' => ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Masukkan Deskripsi'],
+                'label' => 'Deksripsi'
             ]
         )->add(
             'kirim',
             'submit',
             [
-                'attr' => ['class' => 'btn btn-primary']
+                'attr' => ['class' => 'btn btn-primary pull-right']
             ]
         );
     }
