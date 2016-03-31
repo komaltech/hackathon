@@ -179,7 +179,7 @@ class AppController Implements ControllerProviderInterface
         if (! $this->app['session']->has('nama') && ! ($request->getPathInfo() === '/loginAdmin')) {
             $this->app['session']->getFlashbag()->add(
               'message_error',
-                'You must login first'
+                'Anda Harus Login Terlebih Dahulu!'
             );
             return $this->app->redirect($this->app['url_generator']->generate('loginAdmin'));
         }
@@ -191,11 +191,14 @@ class AppController Implements ControllerProviderInterface
 
         return $this->app->redirect($this->app['url_generator']->generate('loginAdmin'));
     }
-
+    
     public  function rawUserAction()
     {
         $userInfo = User::create('ditolaksono@gmail.com','ditoyp','faster', 'Dito YP','jl. bunga desember',2);
-
+        
+        
+        //this method replaced with new administrator access
+        //just create a new user from register form.
         $this->app['orm.em']->persist($userInfo);
         $this->app['orm.em']->flush();
 

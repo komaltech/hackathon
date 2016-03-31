@@ -3,3 +3,5 @@ vendor/
 app/cache
 app/logs/
 .idea/
+/nbproject/
+/nbproject/private/
